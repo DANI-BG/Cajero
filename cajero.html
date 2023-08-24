@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cajero</title>
+</head>
+<body>
+    <h1>Banco DEVF</h1>
+
+    <script src="cajero.js"></script>
+
+</body>
+</html>
+
+html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cjero automatico</title>
+</head>
+<body>
+	<h1>Bienvenido a su cajero DEVF</h1>
+	<form>
+		<label for="amount">Ingrese el monto que desea consignar:</label>
+		<input type="number" id="amount" name="amount"><br><br>
+		<input type="button" value="Consignar" onclick="Consignar()">
+		<input type="button" value="Retirar" onclick="Retirar()">
+		<input type="button" value="Consultar saldo" onclick="checkBalance()">
+	</form>
+	<p id="balance"></p>
+	<script>
+		// Create a cash machine object
+		var cash_machine = new CashMachine();
+
+		// Deposit money into the cash machine
+		function Consignar() {
+			var amount = document.getElementById("amount").value;
+			cash_machine.consignar(amount);
+			document.getElementById("saldo").innerHTML = "Su nuevo saldo es: $" + cash_machine.check_balance();
+		}
+
+		// Withdraw money from the cash machine
+		function Retirar() {
+			var amount = document.getElementById("amount").value;
+			var Retirar_amount = cash_machine.Retirar(amount);
+			if (Retirar > 0) {
+				document.getElementById("saldo").innerHTML = "Usted retiró $" + Retirar_amount + ". Su nuevo saldo es: $" + cash_machine.check_balance();
+			} else {
+				document.getElementById("saldo").innerHTML = "Fondos insuficientes.";
+			}
+		}
+
+		// Check the balance of the cash machine
+		function checkBalance() {
+			document.getElementById("saldo").innerHTML = "Su nuevo saldo es: $" + cash_machine.check_balance();
+		}
+	</script>
+</body>
+</html>
